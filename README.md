@@ -435,6 +435,28 @@ Organization
     `NEXTAUTH_SECRET` outside local development. Do not commit `.env` or real
     credentials.
 
+    ## Vercel deployment variables
+
+    Add the following variables in **Vercel Project Settings > Environment
+    Variables**. Enable them for **Production** and **Preview** deployments:
+
+    | Variable | Value |
+    |---|---|
+    | `DATABASE_URL` | The connection string for your hosted PostgreSQL database |
+    | `AUTH_SECRET` | A long, random secret used by the application |
+    | `NEXTAUTH_SECRET` | A long, random secret used by NextAuth |
+    | `NEXTAUTH_URL` | Your deployed Vercel URL, such as `https://your-app.vercel.app` |
+    | `NODE_ENV` | `production` |
+
+    Do not use the local Docker connection string for `DATABASE_URL`; Vercel
+    cannot reach `localhost` on your computer. Use a hosted PostgreSQL
+    provider and confirm that its connection allows Vercel access.
+
+    After saving the variables, redeploy from the Vercel Deployments tab. If
+    the database is new, apply the Prisma schema from a trusted environment
+    with `npx prisma db push`, or deploy a reviewed Prisma migration before
+    opening the application.
+
     ## Database workflow
 
     The repository currently has no committed Prisma migration files, so
