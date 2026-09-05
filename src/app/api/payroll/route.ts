@@ -4,6 +4,8 @@ import { ok, unauthorized } from "@/lib/api";
 import { requireSession } from "@/lib/session";
 import { payrollSchema } from "@/lib/validations";
 
+export const dynamic = "force-dynamic";
+
 export async function GET() {
   if (!(await requireSession())) return unauthorized();
   return ok(await prisma.payroll.findMany({ include: { employee: true }, orderBy: { createdAt: "desc" } }));

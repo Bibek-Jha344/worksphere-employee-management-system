@@ -4,6 +4,8 @@ import { badRequest, ok, unauthorized } from "@/lib/api";
 import { requireSession } from "@/lib/session";
 import { prisma } from "@/lib/prisma";
 
+export const dynamic = "force-dynamic";
+
 export async function GET() {
   const session = await requireSession();
   if (!session?.user.organizationId) {

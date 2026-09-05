@@ -349,3 +349,172 @@ Organization
            ├── Performance
            ├── Documents
            └── Notifications
+
+    ---
+
+    # Getting Started
+
+    ## Prerequisites
+
+    - Node.js 20 or later
+    - npm
+    - Docker Desktop, if using the included PostgreSQL container
+
+    ## Local development
+
+    1. Install dependencies:
+
+      ```bash
+      npm install
+      ```
+
+    2. Create a local environment file. On macOS or Linux:
+
+      ```bash
+      cp .env.example .env
+      ```
+
+      On Windows PowerShell:
+
+      ```powershell
+      Copy-Item .env.example .env
+      ```
+
+    3. Start PostgreSQL:
+
+      ```bash
+      docker compose up -d postgres
+      ```
+
+    4. Generate Prisma Client and synchronize the development database:
+
+      ```bash
+      npx prisma generate
+      npx prisma db push
+      ```
+
+    5. Seed the development database with the demo organization, roles,
+      permissions, leave types, and administrator account.
+
+      macOS or Linux:
+
+      ```bash
+      SEED_ADMIN_PASSWORD="use-a-strong-unique-password" npm run prisma:seed
+      ```
+
+      Windows PowerShell:
+
+      ```powershell
+      $env:SEED_ADMIN_PASSWORD = "use-a-strong-unique-password"; npm run prisma:seed
+      ```
+
+    6. Start the application:
+
+      ```bash
+      npm run dev
+      ```
+
+    Open [http://localhost:3000](http://localhost:3000). After seeding, sign in
+    with `admin@worksphere.local` and the password supplied through
+    `SEED_ADMIN_PASSWORD`.
+
+    ## Environment variables
+
+    The `.env.example` file contains the local development defaults:
+
+    ```dotenv
+    DATABASE_URL="postgresql://postgres:postgres@localhost:5432/worksphere_dev?schema=public"
+    AUTH_SECRET="generate-a-long-random-secret"
+    NEXTAUTH_URL="http://localhost:3000"
+    NEXTAUTH_SECRET="generate-a-different-long-random-secret"
+    NODE_ENV="development"
+    SEED_ADMIN_PASSWORD="set-only-when-running-the-seed"
+    ```
+
+    Use unique, randomly generated values for `AUTH_SECRET` and
+    `NEXTAUTH_SECRET` outside local development. Do not commit `.env` or real
+    credentials.
+
+    ## Database workflow
+
+    The repository currently has no committed Prisma migration files, so
+    `npx prisma db push` is the simplest way to synchronize a local development
+    database with `prisma/schema.prisma`.
+
+    When a schema change should be versioned, create a migration instead:
+
+    ```bash
+    npx prisma migrate dev --name describe-your-change
+    ```
+
+    Useful Prisma commands:
+
+    ```bash
+    npm run prisma:generate
+    npm run prisma:studio
+    ```
+
+    Do not use `db push` for a production database. Review and deploy versioned
+    migrations in production.
+
+    ## Docker Compose
+
+    To run only PostgreSQL for local development:
+
+    ```bash
+    docker compose up -d postgres
+    ```
+
+    To build and run the application container, define `AUTH_SECRET` and
+    `NEXTAUTH_SECRET` in the environment and run:
+
+    ```bash
+    docker compose up --build
+    ```
+
+    The application container waits for PostgreSQL, runs `prisma db push`, and
+    starts the standalone Next.js server on port `3000`. This setup is intended
+    for development or evaluation. Use managed secrets and a reviewed migration
+    process for production deployment.
+
+    ## Repository layout
+
+    ```text
+    prisma/
+      schema.prisma       Database models and relationships
+      seed.ts              Development seed data
+      migrations/         Prisma migration directory
+    public/               Images, icons, and logos
+    src/
+      app/                 Pages, layouts, and API routes
+      components/          Feature and shared UI components
+      hooks/               Reusable React hooks
+      lib/                 Auth, Prisma, validation, permissions, and utilities
+      services/            Server-side domain services
+      types/               Shared TypeScript types
+      middleware.ts        Route protection middleware
+    docker-compose.yml     PostgreSQL and application services
+    Dockerfile             Multi-stage production image
+    next.config.mjs        Next.js configuration
+    ```
+
+    ## Quality checks
+
+    ```bash
+    npm run typecheck
+    npm run lint
+    npm run build
+    ```
+
+    ## Project status
+
+    The repository includes the dashboard shell, authentication foundation,
+    feature pages, validated API routes, Prisma models, services, and
+    development seed data. Production readiness still requires deeper
+    authorization coverage, comprehensive automated tests, migration-based
+    deployment, and external providers for workflows such as email and file
+    storage.
+
+    Planned improvements include employee self-service, manager approval
+    workflows, bulk import/export, richer analytics, notification delivery, and
+    compliance-focused audit reporting.

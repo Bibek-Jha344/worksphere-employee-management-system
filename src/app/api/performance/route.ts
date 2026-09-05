@@ -4,6 +4,8 @@ import { ok, unauthorized } from "@/lib/api";
 import { requireSession } from "@/lib/session";
 import { performanceSchema } from "@/lib/validations";
 
+export const dynamic = "force-dynamic";
+
 export async function GET() {
   if (!(await requireSession())) return unauthorized();
   return ok(await prisma.performanceReview.findMany({ include: { employee: true }, orderBy: { reviewDate: "desc" } }));

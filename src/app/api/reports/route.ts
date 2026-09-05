@@ -2,6 +2,8 @@ import { prisma } from "@/lib/prisma";
 import { ok, unauthorized } from "@/lib/api";
 import { requireSession } from "@/lib/session";
 
+export const dynamic = "force-dynamic";
+
 export async function GET() {
   if (!(await requireSession())) return unauthorized();
   const [employees, departments, activeEmployees] = await Promise.all([prisma.employee.count(), prisma.department.count(), prisma.employee.count({ where: { status: "ACTIVE" } })]);
