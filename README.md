@@ -414,8 +414,12 @@ Organization
       npm run dev
       ```
 
-    Open [http://localhost:3000](http://localhost:3000). After seeding, sign in
-    with `admin@worksphere.local` and the password supplied through
+    Open the WorkSphere portal in your browser:
+
+    [Open the local WorkSphere portal](http://localhost:3000)
+
+    You can also visit `http://localhost:3000` directly. After seeding, sign
+    in with `admin@worksphere.local` and the password supplied through
     `SEED_ADMIN_PASSWORD`.
 
     ## Environment variables
