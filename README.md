@@ -1,140 +1,351 @@
-# WorkSphere Employee Management System
+# WorkSphere - Employee Management System
 
-WorkSphere is a full-stack Employee Management System built with Next.js, TypeScript, Prisma, and PostgreSQL, featuring employee management, attendance, leave management, payroll, performance tracking, role-based access control, dashboards, and reporting.
+![Next.js](https://img.shields.io/badge/Next.js-14-black?logo=next.js)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.x-06B6D4?logo=tailwindcss&logoColor=white)
+![Prisma](https://img.shields.io/badge/Prisma-ORM-2D3748?logo=prisma)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-4169E1?logo=postgresql&logoColor=white)
 
-WorkSphere is a production-oriented Employee Management System planned for modern HR operations, team administration, attendance tracking, payroll, performance, and reporting.
+A modern, full-stack **Employee Management System** designed to simplify
+employee administration, HR operations, attendance, leave management,
+payroll, performance tracking, reporting, and organizational management.
 
-## Project description
+Built with **Next.js, TypeScript, Tailwind CSS, Prisma ORM, and PostgreSQL**,
+WorkSphere provides a centralized platform for managing the complete
+employee lifecycle with secure authentication and role-based access control.
 
-This project is a working SaaS-style employee management platform foundation built with Next.js, TypeScript, Prisma, PostgreSQL, Tailwind CSS, and modern HR workflows.
+---
 
-## Technology stack
+# 🌟 Key Architecture & Features
 
-- Next.js 14 (App Router)
-- TypeScript
-- React
-- Tailwind CSS
-- PostgreSQL
-- Prisma ORM
-- NextAuth/Auth.js architecture
-- Zod validation
-- React Hook Form
-- Recharts
-- Lucide React
-- Docker / Docker Compose
-- npm
+## 1. 🏗️ Full-Stack Application Architecture
 
-## Available features
+- **Modern Next.js Architecture:** Built using the Next.js App Router with
+  server-side functionality and a structured application architecture.
 
-- Authentication and role-based access control
-- Dashboard with HR KPIs and analytics
-- Employee lifecycle management
-- Department and designation management
-- Attendance tracking and reports
-- Leave workflows and balance tracking
-- Payroll and payslip architecture
-- Performance review management
-- Notification and audit log layers
-- Settings and configuration module
+- **Type-Safe Development:** TypeScript is used throughout the application
+  to provide safer APIs, database interactions, components, and business logic.
 
-## Folder structure
+- **Database-Driven Application:** PostgreSQL provides reliable relational
+  data storage while Prisma ORM handles database access and relationships.
+
+- **Reusable Component Architecture:** Common UI elements, forms, tables,
+  dialogs, cards, and utilities are designed for reuse throughout the system.
+
+---
+
+## 2. 🔐 Authentication & Role-Based Access Control
+
+WorkSphere provides secure authentication and authorization for different
+types of system users.
+
+### Supported Roles
+
+- `SUPER_ADMIN` — Complete system administration
+- `HR` — Employee and HR operations
+- `MANAGER` — Team management and approvals
+- `EMPLOYEE` — Personal employee portal
+
+### Security Features
+
+- Secure authentication
+- Password hashing
+- Protected routes
+- Role-based authorization
+- Permission-based access
+- Server-side authorization checks
+- Session management
+- Secure environment configuration
+
+Users only receive access to the modules and information permitted by their
+assigned role.
+
+---
+
+## 3. 👥 Employee Management
+
+The employee module provides centralized management of employee information.
+
+### Features
+
+- Employee directory
+- Employee profiles
+- Employee ID management
+- Personal information
+- Contact information
+- Emergency contacts
+- Employment information
+- Department assignment
+- Designation assignment
+- Manager assignment
+- Joining date
+- Employment status
+- Employee activation/deactivation
+- Employee search
+- Filtering
+- Sorting
+- Pagination
+
+The employee profile acts as the central record for an employee's
+organizational information.
+
+---
+
+## 4. 🏢 Department & Designation Management
+
+WorkSphere provides structured organizational management through departments
+and designations.
+
+### Departments
+
+- Create departments
+- Edit departments
+- View departments
+- Employee association
+- Employee count
+- Department-based filtering
+
+### Designations
+
+- Create designations
+- Edit designations
+- Department association
+- Employee association
+- Designation-based filtering
+
+This provides a structured organizational hierarchy for the company.
+
+---
+
+## 5. ⏰ Attendance Management
+
+The attendance module allows employees and HR users to manage attendance
+records.
+
+### Employee Features
+
+- Check-in
+- Check-out
+- Today's attendance
+- Attendance history
+
+### HR / Management Features
+
+- View employee attendance
+- Date-based filtering
+- Department filtering
+- Attendance status
+- Monthly attendance overview
+- Late and absence tracking
+
+Attendance records are stored in the PostgreSQL database and validated
+server-side.
+
+---
+
+## 6. 🌴 Leave Management
+
+WorkSphere provides a complete leave management workflow.
+
+### Employee
+
+- View leave balance
+- Apply for leave
+- View leave history
+- Cancel pending requests
+
+### Manager / HR
+
+- View leave requests
+- Approve requests
+- Reject requests
+- Add remarks
+- Monitor employee leave
+
+### Leave Validation
+
+- Date validation
+- Overlapping leave prevention
+- Leave balance validation
+- Automatic balance updates
+
+Supported statuses:
+
+`PENDING` · `APPROVED` · `REJECTED` · `CANCELLED`
+
+---
+
+## 7. 💰 Payroll Management
+
+The payroll module provides structured salary and payroll management.
+
+### Salary Components
+
+- Basic salary
+- Allowances
+- Bonuses
+- Deductions
+- Other adjustments
+
+### Payroll Features
+
+- Salary structures
+- Payroll records
+- Payroll generation
+- Payroll history
+- Payroll status
+- Employee payroll view
+- Payslip information
+
+Payroll calculations are processed server-side to prevent manipulation from
+the client application.
+
+---
+
+## 8. 📈 Performance Management
+
+The performance module provides tools for tracking employee development.
+
+### Features
+
+- Employee goals
+- Performance reviews
+- Ratings
+- Manager feedback
+- Review history
+- Performance tracking
+
+Managers can review employees assigned to their teams while HR and
+administrators can access broader organizational performance information.
+
+---
+
+## 9. 📊 Dashboard & Analytics
+
+The WorkSphere dashboard provides an overview of organizational activity.
+
+### Dashboard Metrics
+
+- Total employees
+- Active employees
+- Departments
+- Attendance overview
+- Leave statistics
+- Payroll summary
+- Recent employees
+- Recent activities
+
+### Analytics
+
+- Employees by department
+- Attendance statistics
+- Leave trends
+- Employee growth
+- Payroll overview
+
+Charts and analytics are powered by real application data.
+
+---
+
+## 10. 🔔 Notification System
+
+The application includes an in-app notification system for important
+employee and HR events.
+
+Examples include:
+
+- Leave approval notifications
+- Leave rejection notifications
+- New leave requests
+- Payroll notifications
+- Performance notifications
+- System notifications
+
+Users can:
+
+- View notifications
+- Mark notifications as read
+- Mark all notifications as read
+- View unread notification count
+
+---
+
+## 11. 📋 Audit Logging
+
+Important system actions are recorded through an audit logging system.
+
+Tracked activities include:
+
+- User authentication
+- Employee creation
+- Employee updates
+- Employee status changes
+- Leave approvals
+- Leave rejections
+- Payroll actions
+- Permission changes
+- Administrative actions
+
+Audit logs provide administrators with better visibility into system
+activity and accountability.
+
+---
+
+## 12. 📑 Reports
+
+WorkSphere provides reporting capabilities for important HR operations.
+
+### Available Reports
+
+- Employee reports
+- Attendance reports
+- Leave reports
+- Payroll reports
+- Performance reports
+
+Reports support filtering and date-based analysis where applicable.
+
+---
+
+# 🛠️ Technology Stack
+
+| Technology | Purpose |
+|---|---|
+| **Next.js** | Full-stack React framework |
+| **TypeScript** | Type-safe application development |
+| **React** | User interface |
+| **Tailwind CSS** | Responsive UI styling |
+| **PostgreSQL** | Relational database |
+| **Prisma ORM** | Database access and schema management |
+| **Auth.js** | Authentication and sessions |
+| **Zod** | Data validation |
+| **React Hook Form** | Form management |
+| **Recharts** | Analytics and charts |
+| **Lucide React** | UI icons |
+| **Docker** | Development database/containerization |
+
+---
+
+# 🗄️ Database Architecture
+
+The application uses **PostgreSQL** with **Prisma ORM**.
+
+Core entities include:
 
 ```text
-WorkSphere/
-├── .github/
-│   └── workflows/
-│       └── ci.yml
-├── .vscode/
-│   ├── settings.json
-│   └── extensions.json
-├── prisma/
-│   ├── schema.prisma
-│   ├── seed.ts
-│   └── migrations/
-├── public/
-│   ├── images/
-│   ├── icons/
-│   └── logos/
-├── src/
-│   ├── app/
-│   ├── components/
-│   ├── lib/
-│   ├── services/
-│   ├── types/
-│   ├── hooks/
-│   └── middleware.ts
-├── .env
-├── .env.example
-├── .gitignore
-├── docker-compose.yml
-├── next.config.ts
-├── package.json
-├── postcss.config.js
-├── tailwind.config.ts
-├── tsconfig.json
-├── README.md
-├── PROJECT_REPORT.md
-└── .eslintrc.json
-```
-
-## Environment variables
-
-Create a local `.env` file based on `.env.example`:
-
-```bash
-DATABASE_URL="postgresql://postgres:postgres@localhost:5432/worksphere_dev?schema=public"
-AUTH_SECRET="replace-with-strong-secret"
-NEXTAUTH_URL="http://localhost:3000"
-NEXTAUTH_SECRET="replace-with-strong-secret"
-NODE_ENV="development"
-```
-
-## Development setup
-
-```bash
-npm install
-cp .env.example .env
-npm run dev
-```
-
-## Database setup
-
-1. Start PostgreSQL:
-   ```bash
-   docker-compose up -d postgres
-   ```
-2. Generate Prisma client:
-   ```bash
-   npx prisma generate
-   ```
-3. Apply migrations:
-   ```bash
-   npx prisma migrate dev --name init
-   ```
-4. Seed initial roles and an admin account when needed:
-   ```bash
-   SEED_ADMIN_PASSWORD="use-a-strong-unique-password" npm run prisma:seed
-   ```
-
-## Docker setup
-
-Use the included Docker Compose file to run a PostgreSQL development instance.
-
-```bash
-docker-compose up -d
-```
-
-For the full application container, set `NEXTAUTH_SECRET` and `AUTH_SECRET` in your environment first, then run `docker compose up --build`. The app container pushes the Prisma schema to the configured database on startup. Use a migration-based deployment process instead of `db push` when promoting changes to an existing production database.
-
-## Future development phases
-
-- Phase 1: authentication, user onboarding, RBAC foundation
-- Phase 2: employee and department management modules
-- Phase 3: attendance and leave workflows
-- Phase 4: payroll and report generation
-- Phase 5: performance and notifications
-- Phase 6: hardening, audit trails, and production readiness
-
-## Notes
-
-The current implementation includes the dashboard shell, authentication foundation, employee and department views, attendance and leave surfaces, payroll and performance views, reports, notifications, settings, validated API routes, and development seed data. Production deployment still requires a managed PostgreSQL database, a strong `NEXTAUTH_SECRET`, and a configured email/file-storage provider for workflows that depend on them.
+Organization
+     │
+     ├── Users
+     │     ├── Roles
+     │     └── Permissions
+     │
+     └── Employees
+           │
+           ├── Department
+           ├── Designation
+           ├── Attendance
+           ├── Leave
+           ├── Payroll
+           ├── Performance
+           ├── Documents
+           └── Notifications
